@@ -9,10 +9,14 @@ const LogoutButton = () => {
     const supabase = createClient();
     await supabase.auth.signOut();
     router.push("/auth/login");
+    router.refresh();
   };
 
   return (
-    <button className="btn btn-soft btn-error rounded-2xl" onClick={logout}>
+    <button
+      className="btn btn-sm btn-ghost text-red-400 hover:bg-red-200 justify-start"
+      onClick={logout}
+    >
       Logout
     </button>
   );

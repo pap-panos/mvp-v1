@@ -3,12 +3,14 @@ import Navbar from "./Navbar";
 import { usePathname } from "next/navigation";
 
 import type { User } from "@supabase/supabase-js";
+import Link from "next/link";
 
 interface SidebarProps {
   user: User | null;
+  children: React.ReactNode;
 }
 
-const Sidebar = ({ user }: SidebarProps) => {
+const Sidebar = ({ user, children }: SidebarProps) => {
   const pathname = usePathname();
   if (pathname === "/") return <Navbar user={user} />;
   else
@@ -17,9 +19,7 @@ const Sidebar = ({ user }: SidebarProps) => {
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           <Navbar user={user} />
-          {/* Page content here */}
-          <h1 className="font-bold bg-base-100 rounded-box p-4">Dashboard</h1>
-          <p>Welcome to your dashboard!</p>
+          <main className="p-3 m-3">{children}</main>
         </div>
 
         <div className="drawer-side is-drawer-close:overflow-visible">
@@ -28,13 +28,18 @@ const Sidebar = ({ user }: SidebarProps) => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <div className="flex min-h-full flex-col items-start bg-base-100 is-drawer-close:w-14 is-drawer-open:w-64">
+          <div className="flex min-h-full shadow-sm flex-col items-start bg-base-100 is-drawer-close:w-14 is-drawer-open:w-64">
             {/* Sidebar content here */}
             <ul className="menu w-full grow">
               {/* List item */}
               <li>
-                <button
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                <Link
+                  href="/dashboard"
+                  className={
+                    pathname === "/dashboard"
+                      ? " menu-active bg-primary text-white"
+                      : ""
+                  }
                   data-tip="Homepage"
                 >
                   {/* Home icon */}
@@ -52,13 +57,18 @@ const Sidebar = ({ user }: SidebarProps) => {
                     <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                   </svg>
                   <span className="is-drawer-close:hidden">Homepage</span>
-                </button>
+                </Link>
               </li>
 
               {/* List item */}
               <li>
-                <button
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                <Link
+                  href="/settings"
+                  className={
+                    pathname === "/settings"
+                      ? " menu-active bg-primary text-white"
+                      : ""
+                  }
                   data-tip="Settings"
                 >
                   {/* Settings icon */}
@@ -78,7 +88,7 @@ const Sidebar = ({ user }: SidebarProps) => {
                     <circle cx="7" cy="7" r="3"></circle>
                   </svg>
                   <span className="is-drawer-close:hidden">Settings</span>
-                </button>
+                </Link>
               </li>
             </ul>
           </div>

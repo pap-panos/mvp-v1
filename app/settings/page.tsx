@@ -1,9 +1,9 @@
-const Dashboard = () => {
+const Settings = () => {
   return (
     <div className="p-4 font-bold text-xl text-white bg-error rounded-full">
-      Dashboard
+      Settings
     </div>
   );
 };
 
-export default Dashboard;
+export default Settings;
