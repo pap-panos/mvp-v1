@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { CgLogOut } from "react-icons/cg";
 
 const LogoutButton = () => {
   const router = useRouter();
@@ -14,10 +15,11 @@ const LogoutButton = () => {
 
   return (
     <button
-      className="btn btn-sm btn-ghost text-red-400 hover:bg-red-200 justify-start"
+      className="btn btn-sm btn-ghost  hover:bg-red-200 hover:text-red-400 justify-between"
       onClick={logout}
     >
       Logout
+      <CgLogOut className="ml-2 w-5 h-5" />
     </button>
   );
 };

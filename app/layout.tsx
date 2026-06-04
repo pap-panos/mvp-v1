@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fake Bill",
+  title: "fakebill",
   description: "A Next.js app with supabase for buildings management",
 };
 
