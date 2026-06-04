@@ -5,7 +5,7 @@ import Link from "next/link";
 import type { User } from "@supabase/supabase-js";
 import LogoutButton from "./logout-button";
 import Image from "next/image";
-import john from "@/public/assets/john.jpg";
+import john from "@/public/john.jpg";
 
 interface NavbarProps {
   user: User | null;

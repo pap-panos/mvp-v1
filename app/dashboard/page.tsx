@@ -1,9 +1,0 @@
-const Dashboard = () => {
-  return (
-    <div className="p-4 font-bold text-xl text-white bg-error rounded-full">
-      Dashboard
-    </div>
-  );
-};
-
-export default Dashboard;
