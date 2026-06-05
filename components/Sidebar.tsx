@@ -16,14 +16,14 @@ const Sidebar = ({ user, children }: SidebarProps) => {
   if (pathname === "/") return <Navbar user={user} />;
   else
     return (
-      <div className="drawer md:drawer-open">
+      <div className="drawer sm:drawer-open">
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           <Navbar user={user} />
           <main className="p-3 m-3">{children}</main>
         </div>
 
-        <div className="drawer-side is-drawer-close:overflow-visible">
+        <div className="drawer-side is-drawer-close:overflow-visible z-50">
           <label
             htmlFor="my-drawer-4"
             aria-label="close sidebar"

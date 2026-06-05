@@ -9,6 +9,8 @@ import john from "@/public/john.jpg";
 import { VscLayoutSidebarLeftDock } from "react-icons/vsc";
 import { IoMdNotifications } from "react-icons/io";
 import { FaUserAlt } from "react-icons/fa";
+import { MdOutlineNightlight } from "react-icons/md";
+import { MdOutlineLightMode } from "react-icons/md";
 
 interface NavbarProps {
   user: User | null;
@@ -26,7 +28,6 @@ const Navbar = ({ user }: NavbarProps) => {
             aria-label="open sidebar"
             className="btn btn-square btn-ghost"
           >
-            {/* Sidebar toggle icon */}
             <VscLayoutSidebarLeftDock className="h-5 w-5 rounded" />
           </label>
         </>
@@ -36,29 +37,8 @@ const Navbar = ({ user }: NavbarProps) => {
           fakebill
         </Link>
       </div>
-      {pathname === "/" && !user && (
-        <div className="flex-none">
-          <ul className="menu menu-horizontal px-1">
-            <li className="mr-2">
-              <Link
-                href="/auth/login"
-                className="btn btn-primary text-white btn-sm rounded-full"
-              >
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="btn btn-secondary btn-sm btn-outline hover:text-white rounded-full"
-                href="/auth/signup"
-              >
-                Sign up
-              </Link>
-            </li>
-          </ul>
-        </div>
-      )}
-      {user && (
+
+      {user ? (
         <>
           <button className="btn btn-ghost btn-circle mr-1">
             <div className="indicator">
@@ -107,6 +87,53 @@ const Navbar = ({ user }: NavbarProps) => {
             </ul>
           </div>
         </>
+      ) : (
+        <div className="flex-none">
+          <ul className="menu menu-horizontal px-1">
+            {pathname === "/" && (
+              <>
+                <li className="mr-1">
+                  <Link
+                    href="/auth/login"
+                    className="btn btn-primary text-white btn-sm rounded-full"
+                  >
+                    Login
+                  </Link>
+                </li>
+                <li className="mr-1">
+                  <Link
+                    className="btn btn-secondary btn-sm btn-outline hover:text-white rounded-full"
+                    href="/auth/signup"
+                  >
+                    Sign up
+                  </Link>
+                </li>
+              </>
+            )}
+            <li>
+              <label className="swap swap-rotate rounded-full">
+                <input
+                  type="checkbox"
+                  className="theme-controller"
+                  value="night"
+                />
+
+                <MdOutlineLightMode className="swap-off h-5 w-5 fill-current" />
+
+                <MdOutlineNightlight className="swap-on h-5 w-5 fill-current" />
+              </label>
+            </li>
+            <li>
+              <label className="swap swap-rotate rounded-full">
+                <input type="checkbox" />
+
+                <span className="swap-off">en</span>
+
+                <span className="swap-on">ελ</span>
+              </label>
+            </li>
+          </ul>
+        </div>
       )}
     </nav>
   );
