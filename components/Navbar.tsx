@@ -9,8 +9,9 @@ import john from "@/public/john.jpg";
 import { VscLayoutSidebarLeftDock } from "react-icons/vsc";
 import { IoMdNotifications } from "react-icons/io";
 import { FaUserAlt } from "react-icons/fa";
-import { MdOutlineNightlight } from "react-icons/md";
-import { MdOutlineLightMode } from "react-icons/md";
+import ThemeController from "./theme-controller";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface NavbarProps {
   user: User | null;
@@ -18,6 +19,7 @@ interface NavbarProps {
 
 const Navbar = ({ user }: NavbarProps) => {
   const pathname = usePathname();
+  const t = useTranslation();
 
   return (
     <nav className="navbar sticky top-0 z-50  w-full bg-base-100 shadow-sm">
@@ -97,7 +99,7 @@ const Navbar = ({ user }: NavbarProps) => {
                     href="/auth/login"
                     className="btn btn-primary text-white btn-sm rounded-full"
                   >
-                    Login
+                    {t.login}
                   </Link>
                 </li>
                 <li className="mr-1">
@@ -111,26 +113,10 @@ const Navbar = ({ user }: NavbarProps) => {
               </>
             )}
             <li>
-              <label className="swap swap-rotate rounded-full">
-                <input
-                  type="checkbox"
-                  className="theme-controller"
-                  value="night"
-                />
-
-                <MdOutlineLightMode className="swap-off h-5 w-5 fill-current" />
-
-                <MdOutlineNightlight className="swap-on h-5 w-5 fill-current" />
-              </label>
+              <ThemeController />
             </li>
             <li>
-              <label className="swap swap-rotate rounded-full">
-                <input type="checkbox" />
-
-                <span className="swap-off">en</span>
-
-                <span className="swap-on">ελ</span>
-              </label>
+              <LanguageSwitcher />
             </li>
           </ul>
         </div>

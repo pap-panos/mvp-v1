@@ -8,16 +8,18 @@ export default function ThemeController() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <label className="swap swap-rotate">
+    <label className="swap swap-rotate rounded-full">
       <input
         type="checkbox"
         checked={theme === "night"}
         onChange={(e) => setTheme(e.target.checked ? "night" : "nord")}
+        className="theme-controller"
+        value={theme}
       />
 
-      <MdOutlineLightMode className="swap-off h-5 w-5" />
+      <MdOutlineLightMode className="swap-off h-5 w-5 fill-current" />
 
-      <MdOutlineNightlight className="swap-on h-5 w-5" />
+      <MdOutlineNightlight className="swap-on h-5 w-5 fill-current" />
     </label>
   );
 }
