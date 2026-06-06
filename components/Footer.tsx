@@ -13,7 +13,6 @@ const Footer = () => {
           href="https://github.com/pap-panos/mvp-v1"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-white-100"
         >
           <FaGithub className="size-6 " />
         </a>
@@ -21,7 +20,6 @@ const Footer = () => {
           href="https://www.youtube.com/@elapapi4732"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-white-100"
         >
           <FaYoutube className="size-6 text-red-600" />
         </a>
@@ -29,7 +27,6 @@ const Footer = () => {
           href="https://www.linkedin.com/in/papachristodoulou-panagiotis/"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-white-100"
         >
           <FaLinkedin className="size-6 text-blue-700" />
         </a>
