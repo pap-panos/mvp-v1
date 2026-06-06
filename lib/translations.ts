@@ -3,17 +3,21 @@ export const translations = {
     login: "Σύνδεση",
     signup: "Εγγραφή",
     logout: "Αποσύνδεση",
-    settings: "Ρυθμίσεις",
+    settings: "Ρυθμίσεις εφαρμογής",
     account: "Λογαριασμός",
     landingPage: "Αρχική Σελίδα",
+    appTheme: "Ανοιχτό/Σκούρο θέμα:",
+    appLanguage: "Γλώσσα:",
   },
 
   en: {
     login: "Login",
     signup: "Sign Up",
     logout: "Logout",
-    settings: "Settings",
+    settings: "App settings",
     account: "Account",
+    appTheme: "Light/Dark mode:",
     landingPage: "Landing Page",
+    appLanguage: "Language:",
   },
 };
