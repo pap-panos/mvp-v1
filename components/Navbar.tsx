@@ -71,15 +71,15 @@ const Navbar = ({ user }: NavbarProps) => {
             >
               <li>
                 <Link href="/account" className="justify-between">
-                  Account
+                  {t.account}
                   <span className="badge badge-xs bg-red-500 text-white rounded-full">
-                    New
+                    {t.new}
                   </span>
                 </Link>
               </li>
               <li>
                 <Link href="/profile" className="justify-between">
-                  Profile
+                  {t.profile}
                   <FaUserAlt className="h-4 w-4" />
                 </Link>
               </li>
@@ -107,7 +107,7 @@ const Navbar = ({ user }: NavbarProps) => {
                     className="btn btn-secondary btn-sm btn-outline hover:text-white rounded-full"
                     href="/auth/signup"
                   >
-                    Sign up
+                    {t.signup}
                   </Link>
                 </li>
               </>

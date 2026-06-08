@@ -13,8 +13,12 @@ export const translations = {
     logout: "Αποσύνδεση",
     required: "Απαιτείται",
 
-    settings: "Ρυθμίσεις εφαρμογής",
+    settings: "Ρυθμίσεις",
     account: "Λογαριασμός",
+    new: "Νέο",
+    profile: "Προφίλ",
+    home: "Αρχική",
+
     landingPage: "Αρχική Σελίδα",
     appTheme: "Ανοιχτό/Σκούρο θέμα:",
     appLanguage: "Γλώσσα:",
@@ -44,8 +48,12 @@ export const translations = {
     signup: "Sign Up",
     logout: "Logout",
     required: "Required",
-    settings: "App settings",
+    settings: "Settings",
     account: "Account",
+    new: "New",
+    profile: "Profile",
+    home: "Home",
+
     appTheme: "Light/Dark mode:",
     landingPage: "Landing Page",
     appLanguage: "Language:",

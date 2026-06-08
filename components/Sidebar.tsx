@@ -5,6 +5,7 @@ import { GoHomeFill } from "react-icons/go";
 import type { User } from "@supabase/supabase-js";
 import Link from "next/link";
 import { IoSettingsSharp } from "react-icons/io5";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface SidebarProps {
   user: User | null;
@@ -13,6 +14,7 @@ interface SidebarProps {
 
 const Sidebar = ({ user, children }: SidebarProps) => {
   const pathname = usePathname();
+  const t = useTranslation();
   if (pathname === "/") return <Navbar user={user} />;
   else
     return (
@@ -45,7 +47,7 @@ const Sidebar = ({ user, children }: SidebarProps) => {
                 >
                   {/* Home icon */}
                   <GoHomeFill className="my-1.5 inline-block size-5" />
-                  <span className="is-drawer-close:hidden">Home</span>
+                  <span className="is-drawer-close:hidden">{t.home}</span>
                 </Link>
               </li>
 
@@ -62,7 +64,7 @@ const Sidebar = ({ user, children }: SidebarProps) => {
                 >
                   {/* Settings icon */}
                   <IoSettingsSharp className="my-1.5 inline-block size-5" />
-                  <span className="is-drawer-close:hidden">Settings</span>
+                  <span className="is-drawer-close:hidden">{t.settings}</span>
                 </Link>
               </li>
             </ul>
