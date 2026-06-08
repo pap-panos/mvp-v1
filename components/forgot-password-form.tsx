@@ -2,12 +2,15 @@
 import Link from "next/link";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const ForgotPasswordForm = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+
+  const t = useTranslation();
 
   const handleForgotPassword = async (
     e: React.SubmitEvent<HTMLFormElement>,
@@ -38,30 +41,24 @@ const ForgotPasswordForm = () => {
       {success ? (
         <>
           <div className="flex-col">
-            <h1 className="text-3xl font-bold">Check Your Email</h1>
+            <h1 className="text-3xl font-bold">{t.checkEmail}</h1>
             <p className="text-sm text-muted my-1">
-              Password reset instructions sent to <strong>{email}</strong>
+              {t.checkEmailText} <strong>{email}</strong>
             </p>
-            <p className="text-sm text-muted my-5">
-              If you registered using your email and password, you will receive
-              a password reset email.
-            </p>
+            <p className="text-sm text-muted my-5">{t.checkEmailMain}</p>
           </div>
           <Link
             href="/auth/login"
             className="btn btn-primary rounded-2xl mt-1 text-white"
           >
-            Back to login
+            {t.backLogin}
           </Link>
         </>
       ) : (
         <>
           <div className="flex-col">
-            <h1 className="text-3xl font-bold">Reset Your Password</h1>
-            <p className="text-sm text-muted my-1">
-              Type in your email and we&apos;ll send you a link to reset your
-              password
-            </p>
+            <h1 className="text-3xl font-bold">{t.passwordResetTitle}</h1>
+            <p className="text-sm text-muted my-1">{t.passwordResetMain}</p>
           </div>
           <fieldset className="fieldset mt-3">
             <label className="label">Email</label>
@@ -73,7 +70,7 @@ const ForgotPasswordForm = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <p className="validator-hint hidden">Required</p>
+            <p className="validator-hint hidden">{t.required}</p>
           </fieldset>
 
           {error && <p className="text-sm text-red-500 p-1">{error}</p>}
@@ -82,12 +79,12 @@ const ForgotPasswordForm = () => {
             type="submit"
             disabled={isLoading}
           >
-            {isLoading ? "Sending reset email..." : "Send reset email"}
+            {isLoading ? t.passwordResetButtonLoading : t.passwordResetButton}
           </button>
           <span className="mt-1 text-sm text-muted text-center">
-            Already have an account?
+            {t.alreadyHaveAccount}
             <Link className="link  ml-1" href="/auth/login">
-              Login
+              {t.login}
             </Link>
           </span>
         </>
