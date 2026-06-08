@@ -1,6 +1,14 @@
 export const translations = {
   el: {
     login: "Σύνδεση",
+    loginDescription:
+      "Εισαγάγετε το email σας παρακάτω για να συνδεθείτε στον λογαριασμό σας",
+    loggingIn: "Γίνεται σύνδεση...",
+    noAccount: "Δεν έχετε λογαριασμό;",
+
+    password: "Κωδικός Πρόσβασης",
+    forgotPassword: "Ξεχάσατε τον κωδικό πρόσβασής σας;",
+
     signup: "Εγγραφή",
     logout: "Αποσύνδεση",
     required: "Απαιτείται",
@@ -26,6 +34,13 @@ export const translations = {
 
   en: {
     login: "Login",
+    loginDescription: "Enter your email below to login to your account",
+    loggingIn: "Logging in...",
+    noAccount: "Don't have an account?",
+
+    password: "Password",
+    forgotPassword: "Forgot your password?",
+
     signup: "Sign Up",
     logout: "Logout",
     required: "Required",

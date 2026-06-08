@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +11,7 @@ const LoginForm = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const t = useTranslation();
 
   const handleLogin = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,10 +40,8 @@ const LoginForm = () => {
       onSubmit={handleLogin}
     >
       <div className="flex-col">
-        <h1 className="text-3xl font-bold">Login</h1>
-        <p className="text-sm text-muted my-1">
-          Enter your email below to login to your account
-        </p>
+        <h1 className="text-3xl font-bold">{t.login}</h1>
+        <p className="text-sm text-muted my-1 w-xs">{t.loginDescription}</p>
       </div>
       <fieldset className="fieldset mt-3">
         <label className="label">Email</label>
@@ -53,17 +53,17 @@ const LoginForm = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <p className="validator-hint hidden">Required</p>
+        <p className="validator-hint hidden">{t.required}</p>
       </fieldset>
 
       <label className="fieldset">
         <div className="join">
-          <span className="label join-item">Password</span>
+          <span className="label join-item mr-2">{t.password}</span>
           <Link
             href="/auth/forgot-password"
             className="link link-hover join-item ml-auto"
           >
-            Forgot your password?
+            {t.forgotPassword}
           </Link>
         </div>
 
@@ -74,7 +74,7 @@ const LoginForm = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <span className="validator-hint hidden">Required</span>
+        <span className="validator-hint hidden">{t.required}</span>
       </label>
       {error && <p className="text-sm text-red-500 p-1">{error}</p>}
       <button
@@ -82,12 +82,12 @@ const LoginForm = () => {
         type="submit"
         disabled={isLoading}
       >
-        {isLoading ? "Logging in..." : "Login"}
+        {isLoading ? t.loggingIn : t.login}
       </button>
       <span className="mt-1 text-sm text-muted text-center">
-        Don&apos;t have an account?
+        {t.noAccount}
         <Link className="link  ml-1" href="/auth/signup">
-          Sign Up
+          {t.signup}
         </Link>
       </span>
     </form>
