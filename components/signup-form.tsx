@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const SignupForm = () => {
   const [email, setEmail] = useState("");
@@ -11,6 +12,8 @@ const SignupForm = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+
+  const t = useTranslation();
 
   const handleSignup = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,10 +50,8 @@ const SignupForm = () => {
       onSubmit={handleSignup}
     >
       <div className="flex-col">
-        <h1 className="text-3xl font-bold">Sign up</h1>
-        <p className="text-sm text-muted my-1">
-          Create an account to get started
-        </p>
+        <h1 className="text-3xl font-bold">{t.signup}</h1>
+        <p className="text-sm text-muted my-1">{t.signupDescription}</p>
       </div>
       <fieldset className="fieldset mt-3">
         <label className="label">Email</label>
@@ -63,11 +64,11 @@ const SignupForm = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <p className="validator-hint hidden">Required</p>
+        <p className="validator-hint hidden">{t.required}</p>
       </fieldset>
 
       <label className="fieldset">
-        <span className="label">Password</span>
+        <span className="label">{t.password}</span>
         <input
           id="password"
           type="password"
@@ -76,10 +77,10 @@ const SignupForm = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <span className="validator-hint hidden">Required</span>
+        <span className="validator-hint hidden">{t.required}</span>
       </label>
       <label className="fieldset">
-        <span className="label">Repeat Password</span>
+        <span className="label">{t.repeatPassword}</span>
         <input
           id="repeat-password"
           type="password"
@@ -88,7 +89,7 @@ const SignupForm = () => {
           onChange={(e) => setRepeatPassword(e.target.value)}
           required
         />
-        <span className="validator-hint hidden">Required</span>
+        <span className="validator-hint hidden">{t.required}</span>
       </label>
       {error && <p className="text-sm text-red-500 p-1">{error}</p>}
       <button
@@ -96,12 +97,12 @@ const SignupForm = () => {
         type="submit"
         disabled={isLoading}
       >
-        {isLoading ? "Creating an account..." : "Sign up"}
+        {isLoading ? t.creatingAccount : t.signup}
       </button>
       <span className="mt-1 text-sm text-muted text-center">
-        Already have an account?
+        {t.alreadyHaveAccount}
         <Link className="link  ml-1" href="/auth/login">
-          Login
+          {t.login}
         </Link>
       </span>
     </form>
