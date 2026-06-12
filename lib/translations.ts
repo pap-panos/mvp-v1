@@ -9,6 +9,10 @@ export const translations = {
     //Notifications
     new: "Νέο",
 
+    //Buttons
+    upload: "Μεταφόρτωση",
+    uploading: "Μεταφόρτωση...",
+
     //Signup
     signup: "Εγγραφή",
     signupDescription: "Δημιουργήστε έναν λογαριασμό για να ξεκινήσετε",
@@ -66,6 +70,10 @@ export const translations = {
 
     //Notifications
     new: "New",
+
+    //Buttons
+    upload: "Upload",
+    uploading: "Uploading...",
 
     //Signup
     signup: "Sign Up",

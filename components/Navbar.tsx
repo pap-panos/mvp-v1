@@ -5,7 +5,7 @@ import Link from "next/link";
 import type { User } from "@supabase/supabase-js";
 import LogoutButton from "./logout-button";
 import Image from "next/image";
-import john from "@/public/john.jpg";
+import no_image from "@/public/no_image.png";
 import { VscLayoutSidebarLeftDock } from "react-icons/vsc";
 import { IoMdNotifications } from "react-icons/io";
 import { FaUserAlt } from "react-icons/fa";
@@ -59,7 +59,7 @@ const Navbar = ({ user }: NavbarProps) => {
               <div className="w-10 rounded-full">
                 <Image
                   alt="Tailwind CSS Navbar component"
-                  src={john}
+                  src={no_image}
                   width={40}
                   height={40}
                 />
