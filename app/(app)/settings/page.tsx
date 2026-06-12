@@ -6,7 +6,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 const Settings = () => {
   const t = useTranslation();
   return (
-    <div className="flex flex-col p-4 bg-base-100 rounded shadow h-auto w-auto">
+    <div className="flex flex-col p-4 bg-base-100 rounded shadow h-auto w-sm justify-self-center">
       <span className="font-bold text-md text-center">{t.settings}</span>
       <div className="overflow-x-auto">
         <table className="table">
