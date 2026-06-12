@@ -1,5 +1,4 @@
 import Link from "next/link";
-
 export default async function ErrorPage({
   searchParams,
 }: {
@@ -24,7 +23,7 @@ export default async function ErrorPage({
             href="/auth/login"
             className="btn btn-primary text-white btn-sm rounded-full"
           >
-            Try Agai
+            Try Again
           </Link>
         </div>
       </div>

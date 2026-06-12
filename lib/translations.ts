@@ -14,6 +14,11 @@ export const translations = {
     signupDescription: "Δημιουργήστε έναν λογαριασμό για να ξεκινήσετε",
     repeatPassword: "Επανάληψη κωδικού πρόσβασης",
     creatingAccount: "Δημιουργία λογαριασμού...",
+    signupThanks: "Σας ευχαριστούμε που εγγραφήκατε!",
+    emailConfirm:
+      "Ελέγξτε το email σας για να επιβεβαιώσετε τον λογαριασμό σας",
+    emailConfirmDesc:
+      "Η εγγραφή σας ολοκληρώθηκε με επιτυχία. Ελέγξτε το email σας για να επιβεβαιώσετε τον λογαριασμό σας πριν συνδεθείτε.",
 
     //Login
     login: "Σύνδεση",
@@ -67,6 +72,10 @@ export const translations = {
     signupDescription: "Create an account to get started",
     repeatPassword: "Repeat Password",
     creatingAccount: "Creating an account...",
+    signupThanks: "Thank you for signing up!",
+    emailConfirm: "Check your email to confirm your account",
+    emailConfirmDesc:
+      "You've successfully signed up. Please check your email to confirm your account before signing in.",
 
     //Login
     login: "Login",
