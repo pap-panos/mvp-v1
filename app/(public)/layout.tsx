@@ -11,11 +11,21 @@ export default async function RootLayout({
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  return (
-    <>
-      <Navbar user={user} />
-      {children}
-      <Footer />
-    </>
-  );
+  if (!user) {
+    return (
+      <>
+        <Navbar user={null} />
+        {children}
+        <Footer />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Navbar user={user} />
+        {children}
+        <Footer />
+      </>
+    );
+  }
 }
