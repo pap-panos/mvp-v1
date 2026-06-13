@@ -1,6 +1,8 @@
 import { createClient } from "@/lib/supabase/server";
 import Sidebar from "@/components/Sidebar";
 import { redirect } from "next/navigation";
+import ProfilePreferencesSync from "@/components/profile-preferences-sync";
+import { normalizeUserProfile } from "@/lib/profile";
 
 export default async function RootLayout({
   children,
@@ -16,5 +18,22 @@ export default async function RootLayout({
     redirect("/auth/login");
   }
 
-  return <Sidebar user={user}>{children}</Sidebar>;
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select(
+      "id, full_name, phone, avatar_url, preferred_language, preferred_theme",
+    )
+    .eq("id", user.id)
+    .maybeSingle();
+
+  const userProfile = normalizeUserProfile(user.id, profile);
+
+  return (
+    <>
+      <ProfilePreferencesSync profile={userProfile} />
+      <Sidebar user={user} profile={userProfile}>
+        {children}
+      </Sidebar>
+    </>
+  );
 }

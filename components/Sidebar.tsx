@@ -6,22 +6,24 @@ import type { User } from "@supabase/supabase-js";
 import Link from "next/link";
 import { IoSettingsSharp } from "react-icons/io5";
 import { useTranslation } from "@/hooks/useTranslation";
+import type { UserProfile } from "@/lib/profile";
 
 interface SidebarProps {
   user: User | null;
+  profile?: UserProfile | null;
   children: React.ReactNode;
 }
 
-const Sidebar = ({ user, children }: SidebarProps) => {
+const Sidebar = ({ user, profile, children }: SidebarProps) => {
   const pathname = usePathname();
   const t = useTranslation();
-  if (pathname === "/") return <Navbar user={user} />;
+  if (pathname === "/") return <Navbar user={user} profile={profile} />;
   else
     return (
       <div className="drawer sm:drawer-open">
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
-          <Navbar user={user} />
+          <Navbar user={user} profile={profile} />
           <main className="p-3 m-3">{children}</main>
         </div>
 

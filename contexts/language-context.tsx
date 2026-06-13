@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useSyncExternalStore,
+} from "react";
 
 export type Language = "el" | "en";
 
@@ -13,31 +19,50 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
   undefined,
 );
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("el");
+const languageStorageKey = "language";
+const languageChangeEvent = "app-language-change";
 
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem("language") as Language | null;
+function getStoredLanguage(): Language {
+  const savedLanguage = localStorage.getItem(languageStorageKey);
+  return savedLanguage === "en" ? "en" : "el";
+}
 
-    if (savedLanguage) {
-      setLanguageState(savedLanguage);
-    }
-  }, []);
-
-  const setLanguage = (lang: Language) => {
-    localStorage.setItem("language", lang);
-    setLanguageState(lang);
+function subscribeToLanguage(callback: () => void) {
+  const handleStorage = (event: StorageEvent) => {
+    if (event.key === languageStorageKey) callback();
   };
 
+  window.addEventListener("storage", handleStorage);
+  window.addEventListener(languageChangeEvent, callback);
+
+  return () => {
+    window.removeEventListener("storage", handleStorage);
+    window.removeEventListener(languageChangeEvent, callback);
+  };
+}
+
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const language = useSyncExternalStore<Language>(
+    subscribeToLanguage,
+    getStoredLanguage,
+    () => "el" as Language,
+  );
+
+  const setLanguage = useCallback((lang: Language) => {
+    localStorage.setItem(languageStorageKey, lang);
+    window.dispatchEvent(new Event(languageChangeEvent));
+  }, []);
+
+  const value = useMemo<LanguageContextType>(
+    () => ({
+      language,
+      setLanguage,
+    }),
+    [language, setLanguage],
+  );
+
   return (
-    <LanguageContext.Provider
-      value={{
-        language,
-        setLanguage,
-      }}
-    >
-      {children}
-    </LanguageContext.Provider>
+    <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
   );
 }
 

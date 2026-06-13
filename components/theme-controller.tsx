@@ -3,16 +3,34 @@
 import { useTheme } from "next-themes";
 import { MdOutlineNightlight } from "react-icons/md";
 import { MdOutlineLightMode } from "react-icons/md";
+import {
+  daisyThemeToPreferredTheme,
+  preferredThemeToDaisyTheme,
+} from "@/lib/profile";
+import { updateCurrentUserProfilePreference } from "@/lib/profile-client";
 
 export default function ThemeController() {
   const { theme, setTheme } = useTheme();
+
+  const handleThemeChange = async (isDark: boolean) => {
+    const preferredTheme = isDark ? "dark" : "light";
+    setTheme(preferredThemeToDaisyTheme[preferredTheme]);
+
+    try {
+      await updateCurrentUserProfilePreference({
+        preferred_theme: preferredTheme,
+      });
+    } catch {
+      // Keep the UI responsive even if the remote preference update fails.
+    }
+  };
 
   return (
     <label className="swap swap-rotate rounded-full">
       <input
         type="checkbox"
-        checked={theme === "night"}
-        onChange={(e) => setTheme(e.target.checked ? "night" : "nord")}
+        checked={daisyThemeToPreferredTheme(theme) === "dark"}
+        onChange={(e) => handleThemeChange(e.target.checked)}
         className="theme-controller"
         value={theme}
       />

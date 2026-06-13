@@ -5,21 +5,23 @@ import Link from "next/link";
 import type { User } from "@supabase/supabase-js";
 import LogoutButton from "./logout-button";
 import Image from "next/image";
-import no_image from "@/public/no_image.png";
 import { VscLayoutSidebarLeftDock } from "react-icons/vsc";
 import { IoMdNotifications } from "react-icons/io";
 import { FaUserAlt } from "react-icons/fa";
 import ThemeController from "./theme-controller";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslation } from "@/hooks/useTranslation";
+import { getInitials, type UserProfile } from "@/lib/profile";
 
 interface NavbarProps {
   user: User | null;
+  profile?: UserProfile | null;
 }
 
-const Navbar = ({ user }: NavbarProps) => {
+const Navbar = ({ user, profile }: NavbarProps) => {
   const pathname = usePathname();
   const t = useTranslation();
+  const initials = getInitials(profile?.full_name ?? null, user?.email ?? null);
 
   return (
     <nav className="navbar sticky top-0 z-50  w-full bg-base-100 shadow-sm">
@@ -56,13 +58,21 @@ const Navbar = ({ user }: NavbarProps) => {
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
-              <div className="w-10 rounded-full">
-                <Image
-                  alt="Tailwind CSS Navbar component"
-                  src={no_image}
-                  width={40}
-                  height={40}
-                />
+              <div className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-base-200">
+                {profile?.avatar_url ? (
+                  <Image
+                    alt={profile.full_name || user.email || t.profile}
+                    src={profile.avatar_url}
+                    fill
+                    sizes="40px"
+                    unoptimized
+                    className="object-cover"
+                  />
+                ) : (
+                  <span className="text-sm font-bold text-base-content">
+                    {initials}
+                  </span>
+                )}
               </div>
             </div>
             <ul
